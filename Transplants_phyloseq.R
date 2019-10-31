@@ -6,9 +6,10 @@ library(plyr)
 ##################### phyloseq #############################
 ############################################################
 
-otu = read.table("OTU_noContaminants.raw.txt", header = TRUE,  row.names=1)
+otu = read.table("otu_noConta_noOutliers.txt", header = TRUE,  row.names=1)
 tax = read.table("Tax_noContaminants.txt", header = TRUE,  row.names=1)
-met = read.table("transplants_metadata.txt", header = TRUE,  row.names=1)
+met = read.table("transplants_metadata_noOutliers.txt", header = TRUE,  row.names=1)
+met$barplots=factor(met$barplots, levels = c("Tank", "AB", "Aiptasia", "Acropora", "Porites"))
 
 tax.1=tax[,-1]
 otu.t= otu_table(otu, taxa_are_rows=TRUE)
@@ -17,109 +18,78 @@ tax.t= tax_table(as.matrix(tax.1))
 
 phy.all= phyloseq(otu.t, tax.t,  sam.t)
 
-SYM=subset_samples(phy.all, !Symbiosis == "APO") 
+
+COL=c("#A3C38E", "#C1A222",  "#577545",  "#39597C", "#7E9EC1") #cont, contInoc, Acro, Por, AB
+#AB  "#C1A222"
+#ACROinoc  "#39597C"
+#PORinoc "#7E9EC1"
+#AIPinoc "#577545"
+#Tank controls "#A3C38E"
+
+#list=c("C","Aip", "CB",  "AB", "CA") #water
+
 APO=subset_samples(phy.all, !Symbiosis == "SYM") 
-
-#COL7= c( "#E7869E", "#DA4167", "#8B2A42","#aed35d", "#3C121D","#5e8408","#0254df") #AB, Aiptasia, Control, CB, Inoc(aipt), InocB, water)
-#water #0254df green
-# Aiptaisia #E7869E, #8B2A42 #DA4167 #3C121D lighter to darker
-#coral #aed35d, #5e8408 lighter to darker
-COL3.p=c("#FF3C38", "#D8A038", "#3E7CB1") #Aiptasia, Control, Porites
-COL3.a=c("#5B772C", "#FF3C38", "#D8A038") #Acropora, Aiptasia, Control
-
-por.list=c("C", "Aip", "CB", "Inoc", "InocB", "AB") #water
-acr.list=c("C", "Aip", "CA", "Inoc", "InocA", "AB") #water
-SYM.por=subset_samples(SYM, Condition %in% por.list)
-APO.por=subset_samples(APO, Condition %in% por.list)
-SYM.acr=subset_samples(SYM, Condition %in% acr.list)
-APO.acr=subset_samples(APO, Condition %in% acr.list)
+APO.2=subset_samples(APO,  !barplots == "ignore")
+APO.PCOA_br = ordinate(APO.2, method = "PCoA", distance = "bray")
+a=plot_ordination(APO.2, APO.PCOA_br, color = "barplots", )  + geom_point(size = 3, alpha = 1) + theme_bw()  + ggtitle("APO") + theme(plot.title = element_text(hjust = 0.5)) + scale_colour_manual(values=COL)+ theme(legend.title = element_blank())
 
 
-SYM.por.PCOA_br = ordinate(SYM.por, method = "PCoA", distance = "bray")
-a=plot_ordination(SYM.por, SYM.por.PCOA_br, color = "Inoculum", shape = "category")  + geom_point(size = 3, alpha = 1) + theme_bw()  + ggtitle("Porites SYM") + theme(plot.title = element_text(hjust = 0.5)) + scale_colour_manual(values=COL3.p)
+SYM=subset_samples(phy.all, !Symbiosis == "APO") 
+SYM.2=subset_samples(SYM, !barplots == "ignore")
+SYM.PCOA_br = ordinate(SYM.2, method = "PCoA", distance = "bray")
+b=plot_ordination(SYM, SYM.PCOA_br, color = "barplots", )  + geom_point(size = 3, alpha = 1) + theme_bw()  + ggtitle("SYM") + theme(plot.title = element_text(hjust = 0.5)) + scale_colour_manual(values=COL)+ theme(legend.title = element_blank())
 
-APO.por.PCOA_br = ordinate(APO.por, method = "PCoA", distance = "bray")
-b=plot_ordination(APO.por, APO.por.PCOA_br, color = "Inoculum", shape = "category")  + geom_point(size = 3, alpha = 1) + theme_bw()  + ggtitle("Porites APO") + theme(plot.title = element_text(hjust = 0.5)) + scale_colour_manual(values=COL3.p)
 
-SYM.acr.PCOA_br = ordinate(SYM.acr, method = "PCoA", distance = "bray")
-c=plot_ordination(SYM.acr, SYM.acr.PCOA_br, color = "Inoculum", shape = "category")  + geom_point(size = 3, alpha = 1) + theme_bw()  + ggtitle("Acropora SYM") + theme(plot.title = element_text(hjust = 0.5)) + scale_colour_manual(values=COL3.a)
-
-APO.acr.PCOA_br = ordinate(APO.acr, method = "PCoA", distance = "bray")
-d=plot_ordination(APO.acr, APO.acr.PCOA_br, color = "Inoculum", shape = "category")  + geom_point(size = 3, alpha = 1) + theme_bw()  + ggtitle("Acropora APO") + theme(plot.title = element_text(hjust = 0.5)) + scale_colour_manual(values=COL3.a)
-
-pdf("transplants_PCoAs.pdf", onefile = TRUE, width=15,height=15)
-grid.arrange(a, b, c, d)
+pdf("transplants_PCoAs.pdf", onefile = TRUE, width=10,height=5)
+pcoas=grid.arrange(a, b, ncol = 2)
 dev.off()
 
-### testing id APO and SYMs are similar using the same inoculum
-por.list.all=c( "CB",  "C", "Aip") #water
-acro.list.all=c( "CA", "C", "Aip") #water
-all.por=subset_samples(phy.all, Condition %in% por.list.all)
-all.acr=subset_samples(phy.all, Condition %in% acro.list.all)
-all.por.PCOA_br = ordinate(all.por, method = "PCoA", distance = "bray")
-all.acr.PCOA_br = ordinate(all.acr, method = "PCoA", distance = "bray")
-
-COL2=c("#66717E", "#77C627")
-
-e=plot_ordination(all.por, all.por.PCOA_br, color = "new", shape = "Symbiosis")  + geom_point(size = 3, alpha = 1) + theme_bw()  + ggtitle("Porites") + theme(plot.title = element_text(hjust = 0.5)) #+ scale_colour_manual(values=COL2)
-f=plot_ordination(all.acr, all.acr.PCOA_br,  color = "new", shape = "Symbiosis")  + geom_point(size = 3, alpha = 1) + theme_bw()  + ggtitle("Acropora") + theme(plot.title = element_text(hjust = 0.5)) #+ scale_colour_manual(values=COL2)
-
-pdf("transplants_PCoAs_2.pdf", onefile = TRUE, width=15,height=15)
-grid.arrange(e,f)
-dev.off()
 
 ############################################################
 ##################### Alpha-diversity ######################
 ############################################################
 
-alpha.SYM.por=estimate_richness(SYM.por, split = TRUE, measures = c("Observed", "Chao1"))
-alpha.SYM.por$Inoculum=met$Inoculum[match(rownames(alpha.SYM.por), rownames(met))]
-alpha.SYM.por$category=met$category[match(rownames(alpha.SYM.por), rownames(met))]
-alpha.sym.por.sum=ddply(alpha.SYM.por, c("Inoculum", "category"), summarise, N = length(Chao1), mean = mean(Chao1), sd= sd(Chao1), se= sd / sqrt(N))
-alpha.sym.por.sum$lower=alpha.sym.por.sum$mean-alpha.sym.por.sum$sd
-alpha.sym.por.sum$upper=alpha.sym.por.sum$mean+alpha.sym.por.sum$sd
-alpha.sym.por.sum[is.na(alpha.sym.por.sum)] <- 0
-alpha.sym.por.sum$category=factor(alpha.sym.por.sum$category, levels = c("Tank","AB", "Inoc", "3D", "7D"))
-e=ggplot(alpha.sym.por.sum, aes(x=category, weight=mean, ymin=lower, ymax=upper, fill=Inoculum)) + geom_bar(position=position_dodge(), aes(y=mean), stat="identity", alpha=0.7) + geom_errorbar(position=position_dodge(width=0.9), colour="black") + scale_fill_manual(values=COL3.p) + labs( y= "Chao1", x="", title= "Porites SYM")
+alpha.SYM=estimate_richness(SYM.2, split = TRUE, measures = c("Observed", "Chao1"))
+alpha.SYM$barplots=met$barplots[match(rownames(alpha.SYM), rownames(met))]
+alpha.sym.sum=ddply(alpha.SYM, c("barplots"), summarise, N = length(Chao1), mean = mean(Chao1), sd= sd(Chao1), se= sd / sqrt(N))
+alpha.sym.sum$lower=alpha.sym.sum$mean-alpha.sym.sum$sd
+alpha.sym.sum$upper=alpha.sym.sum$mean+alpha.sym.sum$sd
+alpha.sym.sum[is.na(alpha.sym.sum)] <- 0
+alpha.sym.sum$barplots=factor(alpha.sym.sum$barplots, levels =  c("Tank", "AB", "Aiptasia", "Acropora", "Porites"))
+e=ggplot(alpha.sym.sum, aes(x=barplots, weight=mean, ymin=lower, ymax=upper, fill=barplots)) + geom_bar(position=position_dodge(), aes(y=mean), stat="identity", alpha=0.7) + geom_errorbar(position=position_dodge(width=0.5), colour="black") + scale_fill_manual(values=COL) + labs( y= "Chao1", x="", title= "SYM") + theme(legend.title = element_blank())
 
-alpha.APO.por=estimate_richness(APO.por, split = TRUE, measures = c("Observed", "Chao1"))
-alpha.APO.por$Inoculum=met$Inoculum[match(rownames(alpha.APO.por), rownames(met))]
-alpha.APO.por$category=met$category[match(rownames(alpha.APO.por), rownames(met))]
-alpha.APO.por.sum=ddply(alpha.APO.por, c("Inoculum", "category"), summarise, N = length(Chao1), mean = mean(Chao1), sd= sd(Chao1), se= sd / sqrt(N))
-alpha.APO.por.sum$lower=alpha.APO.por.sum$mean-alpha.APO.por.sum$sd
-alpha.APO.por.sum$upper=alpha.APO.por.sum$mean+alpha.APO.por.sum$sd
-alpha.APO.por.sum[is.na(alpha.APO.por.sum)] <- 0
-alpha.APO.por.sum$category=factor(alpha.APO.por.sum$category, levels = c("Tank","AB", "Inoc", "3D", "7D"))
-f=ggplot(alpha.APO.por.sum, aes(x=category, weight=mean, ymin=lower, ymax=upper, fill=Inoculum)) + geom_bar(position=position_dodge(), aes(y=mean), stat="identity", alpha=0.7) + geom_errorbar(position=position_dodge(width=0.9), colour="black") + scale_fill_manual(values=COL3.p) + labs( y= "Chao1", x="", title= "Porites APO")
+alpha.apo=estimate_richness(APO.2, split = TRUE, measures = c("Observed", "Chao1"))
+alpha.apo$barplots=met$barplots[match(rownames(alpha.apo), rownames(met))]
+alpha.apo.sum=ddply(alpha.apo, c("barplots"), summarise, N = length(Chao1), mean = mean(Chao1), sd= sd(Chao1), se= sd / sqrt(N))
+alpha.apo.sum$lower=alpha.apo.sum$mean-alpha.apo.sum$sd
+alpha.apo.sum$upper=alpha.apo.sum$mean+alpha.apo.sum$sd
+alpha.apo.sum[is.na(alpha.apo.sum)] <- 0
+alpha.apo.sum$barplots=factor(alpha.apo.sum$barplots, levels =  c("Tank", "AB", "Aiptasia", "Acropora", "Porites"))
+f=ggplot(alpha.apo.sum, aes(x=barplots, weight=mean, ymin=lower, ymax=upper, fill=barplots)) + geom_bar(position=position_dodge(), aes(y=mean), stat="identity", alpha=0.7) + geom_errorbar(position=position_dodge(width=0.5), colour="black") + scale_fill_manual(values=COL) + labs( y= "Chao1", x="", title= "APO")+ theme(legend.title = element_blank())
 
-alpha.SYM.acr=estimate_richness(SYM.acr, split = TRUE, measures = c("Observed", "Chao1"))
-alpha.SYM.acr$Inoculum=met$Inoculum[match(rownames(alpha.SYM.acr), rownames(met))]
-alpha.SYM.acr$category=met$category[match(rownames(alpha.SYM.acr), rownames(met))]
-alpha.sym.acr.sum=ddply(alpha.SYM.acr, c("Inoculum", "category"), summarise, N = length(Chao1), mean = mean(Chao1), sd= sd(Chao1), se= sd / sqrt(N))
-alpha.sym.acr.sum$lower=alpha.sym.acr.sum$mean-alpha.sym.acr.sum$sd
-alpha.sym.acr.sum$upper=alpha.sym.acr.sum$mean+alpha.sym.acr.sum$sd
-alpha.sym.acr.sum[is.na(alpha.sym.acr.sum)] <- 0
-alpha.sym.acr.sum$category=factor(alpha.sym.acr.sum$category, levels = c("Tank","AB", "Inoc", "3D", "7D"))
-g=ggplot(alpha.sym.acr.sum, aes(x=category, weight=mean, ymin=lower, ymax=upper, fill=Inoculum)) + geom_bar(position=position_dodge(), aes(y=mean), stat="identity", alpha=0.7) + geom_errorbar(position=position_dodge(width=0.9), colour="black") + scale_fill_manual(values=COL3.a) + labs( y= "Chao1", x="", title= "Acropora SYM")
-
-alpha.APO.acr=estimate_richness(APO.acr, split = TRUE, measures = c("Observed", "Chao1"))
-alpha.APO.acr$Inoculum=met$Inoculum[match(rownames(alpha.APO.acr), rownames(met))]
-alpha.APO.acr$category=met$category[match(rownames(alpha.APO.acr), rownames(met))]
-alpha.APO.acr.sum=ddply(alpha.APO.acr, c("Inoculum", "category"), summarise, N = length(Chao1), mean = mean(Chao1), sd= sd(Chao1), se= sd / sqrt(N))
-alpha.APO.acr.sum$lower=alpha.APO.acr.sum$mean-alpha.APO.acr.sum$sd
-alpha.APO.acr.sum$upper=alpha.APO.acr.sum$mean+alpha.APO.acr.sum$sd
-alpha.APO.acr.sum[is.na(alpha.APO.acr.sum)] <- 0
-alpha.APO.acr.sum$category=factor(alpha.APO.acr.sum$category, levels = c("Tank","AB", "Inoc", "3D", "7D"))
-h=ggplot(alpha.APO.acr.sum, aes(x=category, weight=mean, ymin=lower, ymax=upper, fill=Inoculum)) + geom_bar(position=position_dodge(), aes(y=mean), stat="identity", alpha=0.7) + geom_errorbar(position=position_dodge(width=0.9), colour="black") + scale_fill_manual(values=COL3.a) + labs( y= "Chao1", x="", title= "Acropora APO")
-
-pdf("transplants_Chao1.pdf", onefile = TRUE, width=15,height=15)
-grid.arrange(e, f, g, h)
+pdf("transplants_Chao1.pdf", onefile = TRUE, width=12,height=5)
+grid.arrange(e, f, ncol = 2)
 dev.off()
 
-############################################################
-##################### Venn Diagrams ########################
-############################################################
-library(gplots)
-grp1=as.list(unique(grp1$Group))
-venn(list(grp3, grp1))
-write.table(grp1, "grp1_list.txt", quote = FALSE, row.names = FALSE)
+
+# alpha.SYM.acr=estimate_richness(SYM.acr, split = TRUE, measures = c("Observed", "Chao1"))
+# alpha.SYM.acr$Inoculum=met$Inoculum[match(rownames(alpha.SYM.acr), rownames(met))]
+# alpha.SYM.acr$category=met$category[match(rownames(alpha.SYM.acr), rownames(met))]
+# alpha.sym.acr.sum=ddply(alpha.SYM.acr, c("Inoculum", "category"), summarise, N = length(Chao1), mean = mean(Chao1), sd= sd(Chao1), se= sd / sqrt(N))
+# alpha.sym.acr.sum$lower=alpha.sym.acr.sum$mean-alpha.sym.acr.sum$sd
+# alpha.sym.acr.sum$upper=alpha.sym.acr.sum$mean+alpha.sym.acr.sum$sd
+# alpha.sym.acr.sum[is.na(alpha.sym.acr.sum)] <- 0
+# alpha.sym.acr.sum$category=factor(alpha.sym.acr.sum$category, levels = c("Tank","AB", "Inoc", "3D", "7D"))
+# g=ggplot(alpha.sym.acr.sum, aes(x=category, weight=mean, ymin=lower, ymax=upper, fill=Inoculum)) + geom_bar(position=position_dodge(), aes(y=mean), stat="identity", alpha=0.7) + geom_errorbar(position=position_dodge(width=0.9), colour="black") + scale_fill_manual(values=COL3.a) + labs( y= "Chao1", x="", title= "Acropora SYM")
+# 
+# alpha.APO.acr=estimate_richness(APO.acr, split = TRUE, measures = c("Observed", "Chao1"))
+# alpha.APO.acr$Inoculum=met$Inoculum[match(rownames(alpha.APO.acr), rownames(met))]
+# alpha.APO.acr$category=met$category[match(rownames(alpha.APO.acr), rownames(met))]
+# alpha.APO.acr.sum=ddply(alpha.APO.acr, c("Inoculum", "category"), summarise, N = length(Chao1), mean = mean(Chao1), sd= sd(Chao1), se= sd / sqrt(N))
+# alpha.APO.acr.sum$lower=alpha.APO.acr.sum$mean-alpha.APO.acr.sum$sd
+# alpha.APO.acr.sum$upper=alpha.APO.acr.sum$mean+alpha.APO.acr.sum$sd
+# alpha.APO.acr.sum[is.na(alpha.APO.acr.sum)] <- 0
+# alpha.APO.acr.sum$category=factor(alpha.APO.acr.sum$category, levels = c("Tank","AB", "Inoc", "3D", "7D"))
+# h=ggplot(alpha.APO.acr.sum, aes(x=category, weight=mean, ymin=lower, ymax=upper, fill=Inoculum)) + geom_bar(position=position_dodge(), aes(y=mean), stat="identity", alpha=0.7) + geom_errorbar(position=position_dodge(width=0.9), colour="black") + scale_fill_manual(values=COL3.a) + labs( y= "Chao1", x="", title= "Acropora APO")
+
+
