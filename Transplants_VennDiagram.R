@@ -1,42 +1,69 @@
+library(data.table)
 
-#setwd("~/Documents/Projects/clam_microbiome/") #change to specify the location of your directory
 
 #1. import data
-otu = read.table("OTU_noContaminants.raw.txt", header = TRUE)  # Replace with your file name, using Mothur's output directly (e.g tab-delimited file)
+otu = read.table("otu_noConta_noOutliers.txt", header = TRUE)  # Replace with your file name, using Mothur's output directly (e.g tab-delimited file)
 otu$otu=rownames(otu)
-#2. create lists
-#otu[,2:ncol(otu)] = as.numeric(as.character(otu[,2:ncol(otu)]))
-#otu.df[2:ncol(otu.df)] <- lapply(otu.df[2:ncol(otu.df)], as.numeric) # transform factors into numeric
 otu.l = melt(otu, id.vars = c("otu"))
-pres=subset(otu.l, value > 0)
-met = read.table("transplants_metadata.txt", header = TRUE)
-pres$condition1=met$new[match(pres$variable, met$Sample)]# check what is the column you wan to add in your metadata and replace V1 and V2
-pres$condition2=met$Symbiosis[match(pres$variable, met$Sample)]#
-grp1=subset(pres, condition1 == "3D-CB" & condition2 == "APO") ## add here your group of interest
-grp2=subset(pres, condition1 == "3D-CB" & condition2 == "SYM")
-grp3=subset(pres, condition1 == "Inoc" & condition2 == "B") 
-grp4=subset(pres, condition1 == "3D-CA" & condition2 == "APO") 
-grp5=subset(pres, condition1 == "3D-CA" & condition2 == "SYM") 
-grp6=subset(pres, condition1 == "Inoc" & condition2 == "A") 
-grp7=subset(pres, condition1 == "3D-Aip" & condition2 == "APO") 
-grp8=subset(pres, condition1 == "3D-Aip" & condition2 == "SYM") 
-grp9=subset(pres, condition1 == "Inoc" & condition2 == "APO") 
-grp10=subset(pres, condition1 == "Inoc" & condition2 == "SYM") 
+pres=subset(otu.l, value >= 3)
+met = read.table("transplants_metadata_noOutliers.txt", header = TRUE)
 
-#3. plot Venn diagrams
-library(gplots)
+#2. consider OTUs that are present in all samples per group
 
-pdf("transplants_venn.pdf", onefile = TRUE, width=15,height=15)
-venn(list(APO=unique(grp1$otu), SYM=unique(grp2$otu), Inoc=unique(grp3$otu)))
-venn(list(APO=unique(grp4$otu), SYM=unique(grp5$otu), Inoc=unique(grp6$otu)))
-venn(list(APO=unique(grp7$otu), SYM=unique(grp8$otu), InocAPO=unique(grp9$otu), InocSYM=unique(grp10$otu)))
+apoT.m=otu[grepl("APO_C_", names(otu))]
+symT.m=otu[grepl("SYM_C_", names(otu))]
+inocApo.m=otu[grepl("APO_Aip_7D", names(otu))]
+inocSym.m=otu[grepl("SYM_Aip_7D_", names(otu))]
+inocPorApo.m=otu[grepl("APO_CB_7D_", names(otu))]
+inocPorSym.m=otu[grepl("SYM_CB_7D_", names(otu))]
+inocAcrApo.m=otu[grepl("APO_CA_7D_", names(otu))]
+inocAcrSym.m=otu[grepl("SYM_CA_7D_", names(otu))]
 
+apoT.f=apoT.m[apply(apoT.m, MARGIN = 1, function(x) all(x > 0)), ]
+symT.f=symT.m[apply(symT.m, MARGIN = 1, function(x) all(x > 0)), ]
+inocApo.f=inocApo.m[apply(inocApo.m, MARGIN = 1, function(x) all(x > 0)), ]
+inocSym.f=inocSym.m[apply(inocSym.m, MARGIN = 1, function(x) all(x > 0)), ]
+inocPorApo.f=inocPorApo.m[apply(inocPorApo.m, MARGIN = 1, function(x) all(x > 0)), ]
+inocPorSym.f=inocPorSym.m[apply(inocPorSym.m, MARGIN = 1, function(x) all(x > 0)), ]
+inocAcrApo.f=inocAcrApo.m[apply(inocAcrApo.m, MARGIN = 1, function(x) all(x > 0)), ]
+inocAcrSym.f=inocAcrSym.m[apply(inocAcrSym.m, MARGIN = 1, function(x) all(x > 0)), ]
+
+
+#3. checking plot Venn diagrams, final ones were created on http://bioinformatics.psb.ugent.be/webtools/Venn/
+
+library(VennDiagram)
+library(Vennerable)
+library(gridExtra)
+
+#color set 1
+vennD1=venn.diagram(list(rownames(apoT.f), rownames(inocApo.f)), NULL, category.names = c("APO", "APO+APOinoc"), rotation.degree = 90, fill = c("#A3C38E", "#577545"), lty="blank", cat.pos = c(180,0), cat.fontfamily = "Arial",  fontfamily="Arial" , alpha = rep(0.7, 2))
+vennD2=venn.diagram(list(rownames(symT.f), rownames(inocSym.f)), NULL, category.names = c("SYM", "SYM+SYMinoc"), rotation.degree = 90, fill = c("#A3C38E", "#577545"), lty="blank", cat.pos = c(180,0), cat.fontfamily = "Arial",  fontfamily="Arial" , alpha = rep(0.7, 2))
+vennD3=venn.diagram(list(rownames(apoT.f), rownames(inocAcrApo.f)), NULL, category.names = c("APO", "APO+ACRinoc"), rotation.degree = 90, fill = c("#A3C38E", "#39597C"), lty="blank", cat.pos = c(180,0), cat.fontfamily = "Arial",  fontfamily="Arial" , alpha = rep(0.7, 2))
+vennD4=venn.diagram(list(rownames(inocAcrSym.f), rownames(symT.f)), NULL, category.names = c("SYM", "SYM+ACRinoc"), rotation.degree = 90, fill = c("#A3C38E", "#39597C"), lty="blank", cat.pos = c(180,0), cat.fontfamily = "Arial",  fontfamily="Arial" , alpha = rep(0.7, 2))
+vennD5=venn.diagram(list(rownames(apoT.f), rownames(inocPorApo.f)), NULL, category.names = c("APO", "APO+PORinoc"), rotation.degree = 90, fill = c("#A3C38E", "#7E9EC1"), lty="blank", cat.pos = c(180,0), cat.fontfamily = "Arial",  fontfamily="Arial" , alpha = rep(0.7, 2))
+vennD6=venn.diagram(list(rownames(symT.f), rownames(inocPorSym.f)), NULL, category.names = c("SYM", "SYM+PORinoc"), rotation.degree = 90, fill = c("#A3C38E", "#7E9EC1"), lty="blank", cat.pos = c(180,0), cat.fontfamily = "Arial",  fontfamily="Arial" , alpha = rep(0.7, 2))
+
+#color set 2
+vennD1=venn.diagram(list(rownames(apoT.f), rownames(inocApo.f)), NULL, category.names = c("APO", "APO+APOinoc"), rotation.degree = 90, fill = c("#FF6549", "#B82B12"), lty="blank", cat.pos = c(180,0), cat.fontfamily = "Arial",  fontfamily="Arial" , alpha = rep(0.7, 2))
+vennD2=venn.diagram(list(rownames(symT.f), rownames(inocSym.f)), NULL, category.names = c("SYM", "SYM+SYMinoc"), rotation.degree = 90, fill = c("#FF6549", "#B82B12"), lty="blank", cat.pos = c(180,0), cat.fontfamily = "Arial",  fontfamily="Arial" , alpha = rep(0.7, 2))
+vennD3=venn.diagram(list(rownames(apoT.f), rownames(inocAcrApo.f)), NULL, category.names = c("APO", "APO+ACRinoc"), rotation.degree = 90, fill = c("#FF6549", "#39597C"), lty="blank", cat.pos = c(180,0), cat.fontfamily = "Arial",  fontfamily="Arial" , alpha = rep(0.7, 2))
+vennD4=venn.diagram(list(rownames(inocAcrSym.f), rownames(symT.f)), NULL, category.names = c("SYM", "SYM+ACRinoc"), rotation.degree = 90, fill = c("#FF6549", "#39597C"), lty="blank", cat.pos = c(180,0), cat.fontfamily = "Arial",  fontfamily="Arial" , alpha = rep(0.7, 2))
+vennD5=venn.diagram(list(rownames(apoT.f), rownames(inocPorApo.f)), NULL, category.names = c("APO", "APO+PORinoc"), rotation.degree = 90, fill = c("#FF6549E", "#7E9EC1"), lty="blank", cat.pos = c(180,0), cat.fontfamily = "Arial",  fontfamily="Arial" , alpha = rep(0.7, 2))
+vennD6=venn.diagram(list(rownames(symT.f), rownames(inocPorSym.f)), NULL, category.names = c("SYM", "SYM+PORinoc"), rotation.degree = 90, fill = c("#FF6549", "#7E9EC1"), lty="blank", cat.pos = c(180,0), cat.fontfamily = "Arial",  fontfamily="Arial" , alpha = rep(0.7, 2))
+
+
+png("transplants_venn.png", width=1264,height=250, res = 300, pointsize = 4)
+svg("transplants_venn.svg", width = 10, height = 3, pointsize = 12)
+grid.arrange(grobTree(vennD1), grobTree(vennD2),grobTree(vennD3), grobTree(vennD4),grobTree(vennD5), grobTree(vennD6),  ncol = 6, nrow = 1)
 dev.off()
 
-
-#4. (optional) exporting lists
-
-write.table(grp1, "grp1_list.txt", quote = FALSE, row.names = FALSE)
-write.table(grp2, "grp2_list.txt", quote = FALSE, row.names = FALSE) 
-write.table(grp3, "grp3_list.txt", quote = FALSE, row.names = FALSE)
-write.table(grp4, "grp4_list.txt", quote = FALSE, row.names = FALSE)
+#4.exporting lists
+# 
+# write.table(unique(rownames(apoT.f)), "Apo_tank_list.txt", quote = FALSE, row.names = FALSE)
+# write.table(unique(rownames(symT.f)), "Sym_tank_list.txt", quote = FALSE, row.names = FALSE)
+# write.table(unique(rownames(inocApo.f)), "Apo_inoc_Apo_list.txt", quote = FALSE, row.names = FALSE)
+# write.table(unique(rownames(inocSym.f)), "Sym_inoc_Sym_list.txt", quote = FALSE, row.names = FALSE)
+# write.table(unique(rownames(inocPorApo.f)), "Apo_inoc_Por_list.txt", quote = FALSE, row.names = FALSE)
+# write.table(unique(rownames(inocPorSym.f)), "Sym_inoc_Por_list.txt", quote = FALSE, row.names = FALSE)
+# write.table(unique(rownames(inocAcrApo.f)), "Apo_inoc_Acr_list.txt", quote = FALSE, row.names = FALSE)
+# write.table(unique(rownames(inocAcrSym.f)), "Sym_inoc_Acr_list.txt", quote = FALSE, row.names = FALSE)
