@@ -1,103 +1,103 @@
-Sample	Symbiosis	Condition	Replicate	Time	category	Inoculum	new
-APO_C_1	APO	C	1	1A	Tank	Control	Tank
-APO_C_2	APO	C	2	1A	Tank	Control	Tank
-APO_C_3	APO	C	3	1A	Tank	Control	Tank
-APO_C_4	APO	C	4	1A	Tank	Control	Tank
-APO_C_5	APO	C	5	1A	Tank	Control	Tank
-APO_C_6	APO	C	6	1A	Tank	Control	Tank
-APO_AB_1	APO	AB	1	2A	AB	Control	AB
-APO_AB_2	APO	AB	2	2A	AB	Control	AB
-APO_AB_3	APO	AB	3	2A	AB	Control	AB
-APO_AB_4	APO	AB	4	2A	AB	Control	AB
-APO_AB_5	APO	AB	5	2A	AB	Control	AB
-APO_AB_6	APO	AB	6	2A	AB	Control	AB
-APO_Aip_3D_1	APO	Aip	1	3D	3D	Aiptasia	3D-Aip
-APO_Aip_3D_2	APO	Aip	2	3D	3D	Aiptasia	3D-Aip
-APO_Aip_3D_3	APO	Aip	3	3D	3D	Aiptasia	3D-Aip
-APO_Aip_3D_4	APO	Aip	4	3D	3D	Aiptasia	3D-Aip
-APO_Aip_3D_5	APO	Aip	5	3D	3D	Aiptasia	3D-Aip
-APO_Aip_3D_6	APO	Aip	6	3D	3D	Aiptasia	3D-Aip
-APO_Aip_7D_1	APO	Aip	1	7D	7D	Aiptasia	7D-Aip
-APO_Aip_7D_2	APO	Aip	2	7D	7D	Aiptasia	7D-Aip
-APO_Aip_7D_3	APO	Aip	3	7D	7D	Aiptasia	7D-Aip
-APO_Aip_7D_4	APO	Aip	4	7D	7D	Aiptasia	7D-Aip
-APO_Aip_7D_5	APO	Aip	5	7D	7D	Aiptasia	7D-Aip
-APO_Aip_7D_6	APO	Aip	6	7D	7D	Aiptasia	7D-Aip
-APO_CA_3D_1	APO	CA	1	3D	3D	Acropora	3D-CA
-APO_CA_3D_2	APO	CA	2	3D	3D	Acropora	3D-CA
-APO_CA_3D_3	APO	CA	3	3D	3D	Acropora	3D-CA
-APO_CA_3D_4	APO	CA	4	3D	3D	Acropora	3D-CA
-APO_CA_3D_5	APO	CA	5	3D	3D	Acropora	3D-CA
-APO_CA_3D_6	APO	CA	6	3D	3D	Acropora	3D-CA
-APO_CA_7D_1	APO	CA	1	7D	7D	Acropora	7D-CA
-APO_CA_7D_2	APO	CA	2	7D	7D	Acropora	7D-CA
-APO_CA_7D_3	APO	CA	3	7D	7D	Acropora	7D-CA
-APO_CA_7D_4	APO	CA	4	7D	7D	Acropora	7D-CA
-APO_CA_7D_5	APO	CA	5	7D	7D	Acropora	7D-CA
-APO_CA_7D_6	APO	CA	6	7D	7D	Acropora	7D-CA
-APO_CB_3D_1	APO	CB	1	3D	3D	Porites	3D-CB
-APO_CB_3D_2	APO	CB	2	3D	3D	Porites	3D-CB
-APO_CB_3D_3	APO	CB	3	3D	3D	Porites	3D-CB
-APO_CB_3D_4	APO	CB	4	3D	3D	Porites	3D-CB
-APO_CB_3D_5	APO	CB	5	3D	3D	Porites	3D-CB
-APO_CB_3D_6	APO	CB	6	3D	3D	Porites	3D-CB
-APO_CB_7D_1	APO	CB	1	7D	7D	Porites	7D-CB
-APO_CB_7D_2	APO	CB	2	7D	7D	Porites	7D-CB
-APO_CB_7D_3	APO	CB	3	7D	7D	Porites	7D-CB
-APO_CB_7D_4	APO	CB	4	7D	7D	Porites	7D-CB
-APO_CB_7D_5	APO	CB	5	7D	7D	Porites	7D-CB
-APO_CB_7D_6	APO	CB	6	7D	7D	Porites	7D-CB
-SYM_C_1	SYM	C	1	1A	Tank	Control	Tank
-SYM_C_2	SYM	C	2	1A	Tank	Control	Tank
-SYM_C_3	SYM	C	3	1A	Tank	Control	Tank
-SYM_C_4	SYM	C	4	1A	Tank	Control	Tank
-SYM_C_5	SYM	C	5	1A	Tank	Control	Tank
-SYM_C_6	SYM	C	6	1A	Tank	Control	Tank
-SYM_AB_1	SYM	AB	1	2A	AB	Control	AB
-SYM_AB_2	SYM	AB	2	2A	AB	Control	AB
-SYM_AB_3	SYM	AB	3	2A	AB	Control	AB
-SYM_AB_4	SYM	AB	4	2A	AB	Control	AB
-SYM_AB_5	SYM	AB	5	2A	AB	Control	AB
-SYM_AB_6	SYM	AB	6	2A	AB	Control	AB
-SYM_Aip_3D_1	SYM	Aip	1	3D	3D	Aiptasia	3D-Aip
-SYM_Aip_3D_2	SYM	Aip	2	3D	3D	Aiptasia	3D-Aip
-SYM_Aip_3D_3	SYM	Aip	3	3D	3D	Aiptasia	3D-Aip
-SYM_Aip_3D_4	SYM	Aip	4	3D	3D	Aiptasia	3D-Aip
-SYM_Aip_3D_5	SYM	Aip	5	3D	3D	Aiptasia	3D-Aip
-SYM_Aip_3D_6	SYM	Aip	6	3D	3D	Aiptasia	3D-Aip
-SYM_Aip_7D_1	SYM	Aip	1	7D	7D	Aiptasia	7D-Aip
-SYM_Aip_7D_2	SYM	Aip	2	7D	7D	Aiptasia	7D-Aip
-SYM_Aip_7D_3	SYM	Aip	3	7D	7D	Aiptasia	7D-Aip
-SYM_Aip_7D_4	SYM	Aip	4	7D	7D	Aiptasia	7D-Aip
-SYM_Aip_7D_5	SYM	Aip	5	7D	7D	Aiptasia	7D-Aip
-SYM_Aip_7D_6	SYM	Aip	6	7D	7D	Aiptasia	7D-Aip
-SYM_CA_3D_1	SYM	CA	1	3D	3D	Acropora	3D-CA
-SYM_CA_3D_2	SYM	CA	2	3D	3D	Acropora	3D-CA
-SYM_CA_3D_3	SYM	CA	3	3D	3D	Acropora	3D-CA
-SYM_CA_3D_4	SYM	CA	4	3D	3D	Acropora	3D-CA
-SYM_CA_3D_5	SYM	CA	5	3D	3D	Acropora	3D-CA
-SYM_CA_3D_6	SYM	CA	6	3D	3D	Acropora	3D-CA
-SYM_CA_7D_1	SYM	CA	1	7D	7D	Acropora	7D-CA
-SYM_CA_7D_2	SYM	CA	2	7D	7D	Acropora	7D-CA
-SYM_CA_7D_3	SYM	CA	3	7D	7D	Acropora	7D-CA
-SYM_CA_7D_4	SYM	CA	4	7D	7D	Acropora	7D-CA
-SYM_CA_7D_5	SYM	CA	5	7D	7D	Acropora	7D-CA
-SYM_CA_7D_6	SYM	CA	6	7D	7D	Acropora	7D-CA
-SYM_CB_3D_1	SYM	CB	1	3D	3D	Porites	3D-CB
-SYM_CB_3D_2	SYM	CB	2	3D	3D	Porites	3D-CB
-SYM_CB_3D_3	SYM	CB	3	3D	3D	Porites	3D-CB
-SYM_CB_3D_4	SYM	CB	4	3D	3D	Porites	3D-CB
-SYM_CB_3D_5	SYM	CB	5	3D	3D	Porites	3D-CB
-SYM_CB_3D_6	SYM	CB	6	3D	3D	Porites	3D-CB
-SYM_CB_7D_1	SYM	CB	1	7D	7D	Porites	7D-CB
-SYM_CB_7D_2	SYM	CB	2	7D	7D	Porites	7D-CB
-SYM_CB_7D_3	SYM	CB	3	7D	7D	Porites	7D-CB
-SYM_CB_7D_4	SYM	CB	4	7D	7D	Porites	7D-CB
-SYM_CB_7D_5	SYM	CB	5	7D	7D	Porites	7D-CB
-SYM_CB_7D_6	SYM	CB	6	7D	7D	Porites	7D-CB
-Inoc_APO	APO	Inoc	1	T0	Inoc	Aiptasia	Inoc
-Inoc_SYM	SYM	Inoc	1	T0	Inoc	Aiptasia	Inoc
-Inoc_A	A	InocA	1	3A	Inoc	Acropora	Inoc
-Inoc_B	B	InocB	1	3A	Inoc	Porites	Inoc
-APO_water	APO	water	1	T0	water	water	water
-SYM_water	SYM	water	1	T0	water	water	water
+Sample	Symbiosis	Condition	Replicate	Time	category	Inoculum	new	Replicate2	barplots
+APO_C_1	APO	C	1	1A	Tank	Control	Tank	1	Tank
+APO_C_2	APO	C	2	1A	Tank	Control	Tank	2	Tank
+APO_C_3	APO	C	3	1A	Tank	Control	Tank	3	Tank
+APO_C_4	APO	C	4	1A	Tank	Control	Tank	4	Tank
+APO_C_5	APO	C	5	1A	Tank	Control	Tank	5	Tank
+APO_C_6	APO	C	6	1A	Tank	Control	Tank	6	Tank
+APO_AB_1	APO	AB	1	2A	AB	Control	AB	1	AB
+APO_AB_2	APO	AB	2	2A	AB	Control	AB	2	AB
+APO_AB_3	APO	AB	3	2A	AB	Control	AB	3	AB
+APO_AB_4	APO	AB	4	2A	AB	Control	AB	4	AB
+APO_AB_5	APO	AB	5	2A	AB	Control	AB	5	AB
+APO_AB_6	APO	AB	6	2A	AB	Control	AB	2	AB
+APO_Aip_3D_1	APO	Aip	1	3D	3D	Aiptasia	3D-Aip	1	ignore
+APO_Aip_3D_2	APO	Aip	2	3D	3D	Aiptasia	3D-Aip	2	ignore
+APO_Aip_3D_3	APO	Aip	3	3D	3D	Aiptasia	3D-Aip	3	ignore
+APO_Aip_3D_4	APO	Aip	4	3D	3D	Aiptasia	3D-Aip	4	ignore
+APO_Aip_3D_5	APO	Aip	5	3D	3D	Aiptasia	3D-Aip	5	ignore
+APO_Aip_3D_6	APO	Aip	6	3D	3D	Aiptasia	3D-Aip	6	ignore
+APO_Aip_7D_1	APO	Aip	1	7D	7D	Aiptasia	7D-Aip	1	Aiptasia
+APO_Aip_7D_2	APO	Aip	2	7D	7D	Aiptasia	7D-Aip	2	Aiptasia
+APO_Aip_7D_3	APO	Aip	3	7D	7D	Aiptasia	7D-Aip	3	Aiptasia
+APO_Aip_7D_4	APO	Aip	4	7D	7D	Aiptasia	7D-Aip	4	Aiptasia
+APO_Aip_7D_5	APO	Aip	5	7D	7D	Aiptasia	7D-Aip	5	Aiptasia
+APO_Aip_7D_6	APO	Aip	6	7D	7D	Aiptasia	7D-Aip	5	Aiptasia
+APO_CA_3D_1	APO	CA	1	3D	3D	Acropora	3D-CA	1	ignore
+APO_CA_3D_2	APO	CA	2	3D	3D	Acropora	3D-CA	2	ignore
+APO_CA_3D_3	APO	CA	3	3D	3D	Acropora	3D-CA	3	ignore
+APO_CA_3D_4	APO	CA	4	3D	3D	Acropora	3D-CA	4	ignore
+APO_CA_3D_5	APO	CA	5	3D	3D	Acropora	3D-CA	5	ignore
+APO_CA_3D_6	APO	CA	6	3D	3D	Acropora	3D-CA	6	ignore
+APO_CA_7D_1	APO	CA	1	7D	7D	Acropora	7D-CA	1	Acropora
+APO_CA_7D_2	APO	CA	2	7D	7D	Acropora	7D-CA	2	Acropora
+APO_CA_7D_3	APO	CA	3	7D	7D	Acropora	7D-CA	3	Acropora
+APO_CA_7D_4	APO	CA	4	7D	7D	Acropora	7D-CA	4	Acropora
+APO_CA_7D_5	APO	CA	5	7D	7D	Acropora	7D-CA	5	Acropora
+APO_CA_7D_6	APO	CA	6	7D	7D	Acropora	7D-CA	2	Acropora
+APO_CB_3D_1	APO	CB	1	3D	3D	Porites	3D-CB	1	ignore
+APO_CB_3D_2	APO	CB	2	3D	3D	Porites	3D-CB	2	ignore
+APO_CB_3D_3	APO	CB	3	3D	3D	Porites	3D-CB	3	ignore
+APO_CB_3D_4	APO	CB	4	3D	3D	Porites	3D-CB	4	ignore
+APO_CB_3D_5	APO	CB	5	3D	3D	Porites	3D-CB	5	ignore
+APO_CB_3D_6	APO	CB	6	3D	3D	Porites	3D-CB	6	ignore
+APO_CB_7D_1	APO	CB	1	7D	7D	Porites	7D-CB	1	Porites
+APO_CB_7D_2	APO	CB	2	7D	7D	Porites	7D-CB	2	Porites
+APO_CB_7D_3	APO	CB	3	7D	7D	Porites	7D-CB	3	Porites
+APO_CB_7D_4	APO	CB	4	7D	7D	Porites	7D-CB	4	Porites
+APO_CB_7D_5	APO	CB	5	7D	7D	Porites	7D-CB	5	Porites
+APO_CB_7D_6	APO	CB	6	7D	7D	Porites	7D-CB	6	Porites
+SYM_C_1	SYM	C	1	1A	Tank	Control	Tank	1	Tank
+SYM_C_2	SYM	C	2	1A	Tank	Control	Tank	2	Tank
+SYM_C_3	SYM	C	3	1A	Tank	Control	Tank	3	Tank
+SYM_C_4	SYM	C	4	1A	Tank	Control	Tank	4	Tank
+SYM_C_5	SYM	C	5	1A	Tank	Control	Tank	5	Tank
+SYM_C_6	SYM	C	6	1A	Tank	Control	Tank	1	Tank
+SYM_AB_1	SYM	AB	1	2A	AB	Control	AB	1	AB
+SYM_AB_2	SYM	AB	2	2A	AB	Control	AB	2	AB
+SYM_AB_3	SYM	AB	3	2A	AB	Control	AB	3	AB
+SYM_AB_4	SYM	AB	4	2A	AB	Control	AB	4	AB
+SYM_AB_5	SYM	AB	5	2A	AB	Control	AB	5	AB
+SYM_AB_6	SYM	AB	6	2A	AB	Control	AB	1	AB
+SYM_Aip_3D_1	SYM	Aip	1	3D	3D	Aiptasia	3D-Aip	1	ignore
+SYM_Aip_3D_2	SYM	Aip	2	3D	3D	Aiptasia	3D-Aip	2	ignore
+SYM_Aip_3D_3	SYM	Aip	3	3D	3D	Aiptasia	3D-Aip	3	ignore
+SYM_Aip_3D_4	SYM	Aip	4	3D	3D	Aiptasia	3D-Aip	4	ignore
+SYM_Aip_3D_5	SYM	Aip	5	3D	3D	Aiptasia	3D-Aip	5	ignore
+SYM_Aip_3D_6	SYM	Aip	6	3D	3D	Aiptasia	3D-Aip	6	ignore
+SYM_Aip_7D_1	SYM	Aip	1	7D	7D	Aiptasia	7D-Aip	1	Aiptasia
+SYM_Aip_7D_2	SYM	Aip	2	7D	7D	Aiptasia	7D-Aip	2	Aiptasia
+SYM_Aip_7D_3	SYM	Aip	3	7D	7D	Aiptasia	7D-Aip	3	Aiptasia
+SYM_Aip_7D_4	SYM	Aip	4	7D	7D	Aiptasia	7D-Aip	4	Aiptasia
+SYM_Aip_7D_5	SYM	Aip	5	7D	7D	Aiptasia	7D-Aip	5	Aiptasia
+SYM_Aip_7D_6	SYM	Aip	6	7D	7D	Aiptasia	7D-Aip	1	Aiptasia
+SYM_CA_3D_1	SYM	CA	1	3D	3D	Acropora	3D-CA	1	ignore
+SYM_CA_3D_2	SYM	CA	2	3D	3D	Acropora	3D-CA	2	ignore
+SYM_CA_3D_3	SYM	CA	3	3D	3D	Acropora	3D-CA	3	ignore
+SYM_CA_3D_4	SYM	CA	4	3D	3D	Acropora	3D-CA	4	ignore
+SYM_CA_3D_5	SYM	CA	5	3D	3D	Acropora	3D-CA	5	ignore
+SYM_CA_3D_6	SYM	CA	6	3D	3D	Acropora	3D-CA	6	ignore
+SYM_CA_7D_1	SYM	CA	1	7D	7D	Acropora	7D-CA	1	Acropora
+SYM_CA_7D_2	SYM	CA	2	7D	7D	Acropora	7D-CA	2	Acropora
+SYM_CA_7D_3	SYM	CA	3	7D	7D	Acropora	7D-CA	3	Acropora
+SYM_CA_7D_4	SYM	CA	4	7D	7D	Acropora	7D-CA	4	Acropora
+SYM_CA_7D_5	SYM	CA	5	7D	7D	Acropora	7D-CA	5	Acropora
+SYM_CA_7D_6	SYM	CA	6	7D	7D	Acropora	7D-CA	5	Acropora
+SYM_CB_3D_1	SYM	CB	1	3D	3D	Porites	3D-CB	1	ignore
+SYM_CB_3D_2	SYM	CB	2	3D	3D	Porites	3D-CB	2	ignore
+SYM_CB_3D_3	SYM	CB	3	3D	3D	Porites	3D-CB	3	ignore
+SYM_CB_3D_4	SYM	CB	4	3D	3D	Porites	3D-CB	4	ignore
+SYM_CB_3D_5	SYM	CB	5	3D	3D	Porites	3D-CB	5	ignore
+SYM_CB_3D_6	SYM	CB	6	3D	3D	Porites	3D-CB	6	ignore
+SYM_CB_7D_1	SYM	CB	1	7D	7D	Porites	7D-CB	1	Porites
+SYM_CB_7D_2	SYM	CB	2	7D	7D	Porites	7D-CB	2	Porites
+SYM_CB_7D_3	SYM	CB	3	7D	7D	Porites	7D-CB	3	Porites
+SYM_CB_7D_4	SYM	CB	4	7D	7D	Porites	7D-CB	4	Porites
+SYM_CB_7D_5	SYM	CB	5	7D	7D	Porites	7D-CB	5	Porites
+SYM_CB_7D_6	SYM	CB	6	7D	7D	Porites	7D-CB	4	Porites
+Inoc_APO	APO	Inoc	1	T0	Inoc	Aiptasia	Inoc	1	ignore
+Inoc_SYM	SYM	Inoc	1	T0	Inoc	Aiptasia	Inoc	1	ignore
+Inoc_A	A	InocA	1	3A	Inoc	Acropora	Inoc	1	ignore
+Inoc_B	B	InocB	1	3A	Inoc	Porites	Inoc	1	ignore
+APO_water	APO	water	1	T0	water	water	water	1	ignore
+SYM_water	SYM	water	1	T0	water	water	water	1	ignore
