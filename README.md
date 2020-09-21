@@ -8,7 +8,7 @@ The development of coral model systems is imperative. In this paper we set the f
 ## Workflow for 16S rDNA amplicon data analysis
 
 1. Mothur pipeline is described in `Transplants_mothur.sh`
-2. The script `Contaminant_removal.R` identifies and remove bacterial contamination from negative controls and exports a new OTU table 
+2. The script `Transplants_Contaminant_removal.R` identifies and remove bacterial contamination from negative controls and exports a new OTU table 
 3. The script `Transplants_ordination.R` plots PCoAs for each symbiotic state colored by treatment.
 4. The script `Transplants_VennDiagram.R` plots Venn diagrams to compare overlapping OTUs between treatments.
 5. The script `Transplants_adonis.R` tests bacterial community composition between treatments and symbiotic states.
