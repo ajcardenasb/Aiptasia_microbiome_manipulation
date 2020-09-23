@@ -3,7 +3,7 @@
 This repository contains the scripts used to analyze data and create figures for the manuscript “Surface topography, bacterial carrying capacity, and the prospect of microbiome transplants in the sea anemone coral model Aiptasia”.  
 
 ## Summary
-The development of coral model systems is imperative. In this paper we set the foundation for Aiptasia as a model for the study of coral-bacterial interactions by 1) compared ultrastructural surface architecture of Aiptasia and stony corals, 2) determined Aiptasia bacterial carrying capacity and 3) established a protocol for bacterial depletion of Aiptasia polyps to facilitate microbial transplants from two species of stony corals
+The development of coral model systems is imperative. In this paper we set the foundation for Aiptasia as a model for the study of coral-bacterial interactions by 1) comparing ultrastructural surface architecture of Aiptasia and stony corals, 2) determined Aiptasia bacterial carrying capacity and 3) established a protocol for bacterial depletion of Aiptasia polyps to facilitate microbial transplants from two species of stony corals
 
 ## Workflow for 16S rDNA amplicon data analysis
 
