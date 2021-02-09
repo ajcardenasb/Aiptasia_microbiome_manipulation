@@ -1,4 +1,4 @@
-# Coral microbiome transplants
+# Aiptasia microbiome manipulation
 
 This repository contains the scripts used to analyze data and create figures for the manuscript “Surface topography, bacterial carrying capacity, and the prospect of microbiome transplants in the sea anemone coral model Aiptasia”.  
 
